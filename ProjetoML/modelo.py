@@ -12,6 +12,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
+import pickle
 
 # Carregar os dados
 data = pd.read_csv('Obesity prediction.csv')
@@ -24,7 +25,7 @@ print(data.isnull().sum())
 data = data.dropna()  # Remover linhas com valores ausentes (ajustável)
 
 # Remover colunas de baixa importância
-columns_to_drop = ["SMOKE", "SCC", "FAVC", "MTRANS"]
+columns_to_drop = ["SMOKE", "SCC", "FAVC"]
 data = data.drop(columns=columns_to_drop)
 
 # Arredondar valores flutuantes
@@ -37,6 +38,22 @@ for column in data.select_dtypes(include=['object']).columns:
     le = LabelEncoder()
     data[column] = le.fit_transform(data[column])
     label_encoders[column] = le
+    
+names = {
+    0: "Peso Insuficiente",
+    1: "Peso Normal",
+    2: "Sobrepeso Nível I",
+    3: "Sobrepeso Nível II",
+    4: "Obesidade Tipo I",
+    5: "Obesidade Tipo II",
+    6: "Obesidade Tipo III"
+}
+
+# Salvando o dicionário em um arquivo .pkl
+with open("names.pkl", "wb") as f:
+    pickle.dump(names, f)
+
+print("Arquivo names.pkl criado com sucesso!")
 
 # Separar features e target
 X = data.drop('Obesity', axis=1)
@@ -52,5 +69,4 @@ rf_model.fit(X_train, y_train)
 # Fazer previsões
 y_pred = rf_model.predict(X_test)
 
-import pickle
 pickle.dump(rf_model, open('model.pkl','wb')) # salvando o modelo
