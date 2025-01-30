@@ -11,22 +11,26 @@
   
 </head>
 
-<body style="background: #000;">
+<body>
  <div class="login">
   <h1>Previsão de Obesidade</h1>
 
   
   <form action="{{ url_for('predict')}}" method="post">
-
+  <div class="form-grid">
     <label for="gender">Sexo</label>
     <select name="gender">
       <option value="1">Masculino</option>
       <option value="0">Feminino</option>
     </select>
 
-
+    <label for="age">Idade</label>
     <input type="number" name="age" placeholder="Idade" required />
+
+    <label for="height">Altura</label>
     <input type="number" name="height" placeholder="Altura (cm)" required />
+
+    <label for="weight">Peso</label>
     <input type="number" name="weight" placeholder="Peso (kg)" required />
 
     <label for="family_history">Histórico de obesidade na família?</label>
@@ -90,9 +94,11 @@
       <option value="3">Caminhada</option>
       <option value="4">Motocicleta</option>
     </select>
+  </div>
 
     <button type="submit" class="btn btn-primary btn-block btn-large">Identificar obesidade</button>
   </form>
+
 
   <br><br>
   {{ prediction_text }}
