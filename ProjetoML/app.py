@@ -48,8 +48,6 @@ def predict():
             "calc": {"0": 0, "1": 1, "2": 2},
             "mtrans": {"0": 0, "1": 1, "2": 2, "3": 3, "4": 4},
         }
-        
-        print("features: ", features)
 
         for key, mapping in categorical_mappings.items():
             if key in features:
@@ -57,8 +55,6 @@ def predict():
 
         # 🔹 Preparando os dados para o modelo
         final_features = np.array([list(features.values())]).reshape(1, -1)
-        
-        print("final features: ", final_features)
 
         # 🔹 Fazendo a predição
         pred = model.predict(final_features)
