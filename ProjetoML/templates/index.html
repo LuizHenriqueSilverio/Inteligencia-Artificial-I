@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Deployment ML Project</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+  
+</head>
+
+<body style="background: #000;">
+ <div class="login">
+	<h1>Predição de Obesidade</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post">
+    <input type="text" name="sl" placeholder="Idade" required="required" />
+    <input type="text" name="sw" placeholder="Altura(em cm)" required="required" />
+		<input type="text" name="pl" placeholder="Peso(em kg)" required="required" />
+		<input type="text" name="pw" placeholder="Possui histórico de obesidade na família?" required="required" />
+    <input type="text" name="pw" placeholder="Consome comidas altamente calóricas frequentemente?" required="required" />
+    <input type="text" name="pw" placeholder="Com que frequência consome vegetais?(1 a 3)" required="required" />
+    <input type="text" name="pw" placeholder="Quantas refeições faz por dia?" required="required" />
+    <input type="text" name="pw" placeholder="Consome alimentos entre as refeições?(1 a 3)" required="required" />
+    <input type="text" name="pw" placeholder="Fuma?" required="required" />
+    <input type="text" name="pw" placeholder="Quanta água bebe diariamente? (1 a 3)" required="required" />
+    <input type="text" name="pw" placeholder="Monitora as calorias consumidas diariamente?" required="required" />
+    <input type="text" name="pw" placeholder="Pratica atividades físicas com que frequência?(1 a 4)" required="required" />
+    <input type="text" name="pw" placeholder="Com que frequência utiliza aparelhos eletrônicos?(1 a 3)" required="required" />
+    <input type="text" name="pw" placeholder="Com que frequência consome álcool?(1 a 3)" required="required" />
+    <input type="text" name="pw" placeholder="Com qual meio costuma transitar?" required="required" />
+
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Identificar obesidade</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
