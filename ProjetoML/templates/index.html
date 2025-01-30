@@ -15,31 +15,68 @@
  <div class="login">
 	<h1>Predição de Obesidade</h1>
 
-     <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}" method="post">
-    <input type="text" name="sl" placeholder="Idade" required="required" />
-    <input type="text" name="sw" placeholder="Altura(em cm)" required="required" />
-		<input type="text" name="pl" placeholder="Peso(em kg)" required="required" />
-		<input type="text" name="pw" placeholder="Possui histórico de obesidade na família?" required="required" />
-    <input type="text" name="pw" placeholder="Consome comidas altamente calóricas frequentemente?" required="required" />
-    <input type="text" name="pw" placeholder="Com que frequência consome vegetais?(1 a 3)" required="required" />
-    <input type="text" name="pw" placeholder="Quantas refeições faz por dia?" required="required" />
-    <input type="text" name="pw" placeholder="Consome alimentos entre as refeições?(1 a 3)" required="required" />
-    <input type="text" name="pw" placeholder="Fuma?" required="required" />
-    <input type="text" name="pw" placeholder="Quanta água bebe diariamente? (1 a 3)" required="required" />
-    <input type="text" name="pw" placeholder="Monitora as calorias consumidas diariamente?" required="required" />
-    <input type="text" name="pw" placeholder="Pratica atividades físicas com que frequência?(1 a 4)" required="required" />
-    <input type="text" name="pw" placeholder="Com que frequência utiliza aparelhos eletrônicos?(1 a 3)" required="required" />
-    <input type="text" name="pw" placeholder="Com que frequência consome álcool?(1 a 3)" required="required" />
-    <input type="text" name="pw" placeholder="Com qual meio costuma transitar?" required="required" />
+      <input type="text" name="age" placeholder="Idade" required="required" />
+      <input type="text" name="height" placeholder="Altura (em cm)" required="required" />
+      <input type="text" name="weight" placeholder="Peso (em kg)" required="required" />
 
+      <label for="family_history">Histórico de obesidade na família?</label>
+      <select name="family_history">
+        <option value="yes">Sim</option>
+        <option value="no">Não</option>
+      </select>
 
-        <button type="submit" class="btn btn-primary btn-block btn-large">Identificar obesidade</button>
+      <label for="fcvc">Frequência de consumo de vegetais</label>
+      <select name="fcvc">
+        <option value="1">Baixa</option>
+        <option value="2">Média</option>
+        <option value="3">Alta</option>
+      </select>
+
+      <label for="ncp">Número de refeições por dia</label>
+      <input type="text" name="ncp" placeholder="Ex: 3" required="required" />
+
+      <label for="caec">Consumo entre refeições</label>
+      <select name="caec">
+        <option value="0">Nunca</option>
+        <option value="1">Às vezes</option>
+        <option value="2">Frequentemente</option>
+      </select>
+
+      <label for="ch2o">Consumo de água diário</label>
+      <select name="ch2o">
+        <option value="1">Pouco</option>
+        <option value="2">Moderado</option>
+        <option value="3">Alto</option>
+      </select>
+
+      <label for="faf">Frequência de atividade física</label>
+      <select name="faf">
+        <option value="0">Nenhuma</option>
+        <option value="1">Baixa</option>
+        <option value="2">Média</option>
+        <option value="3">Alta</option>
+      </select>
+
+      <label for="tue">Uso de dispositivos eletrônicos</label>
+      <select name="tue">
+        <option value="1">Baixo</option>
+        <option value="2">Médio</option>
+        <option value="3">Alto</option>
+      </select>
+
+      <label for="calc">Consumo de álcool</label>
+      <select name="calc">
+        <option value="0">Nunca</option>
+        <option value="1">Às vezes</option>
+        <option value="2">Frequentemente</option>
+      </select>
+
+      <button type="submit" class="btn btn-primary btn-block btn-large">Identificar obesidade</button>
     </form>
 
-   <br>
-   <br>
-   {{ prediction_text }}
+    <br><br>
+    {{ prediction_text }}
 
  </div>
 
