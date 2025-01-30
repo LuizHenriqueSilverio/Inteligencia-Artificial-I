@@ -14,7 +14,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 
 # Carregar os dados
-data = pd.read_csv('/content/drive/MyDrive/Colab Notebooks/Inteligência Artificial I/Atividade 6/Obesity prediction.csv')
+data = pd.read_csv('Obesity prediction.csv')
 
 # Verificar valores ausentes
 print("Valores ausentes por coluna:")

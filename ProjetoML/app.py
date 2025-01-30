@@ -6,7 +6,6 @@ import pickle
 app = Flask(__name__)
 CORS(app)
 model = pickle.load(open("model.pkl", "rb"))
-names = pickle.load(open("names.pkl", "rb"))
 
 @app.route("/")
 def home():
@@ -14,15 +13,29 @@ def home():
 
 @app.route("/predict", methods=["POST"])
 def predict():
-    features = [float(x) for x in request.form.values()]
-    final_features = [np.array(features)]
-    pred = model.predict(final_features)
-    output = names[pred[0]]
-    return render_template("index.html", prediction_text="Iris " + output)
+    try:
+        # Captura os valores do formulário e converte para float
+        features = [float(x) for x in request.form.values()]
+        final_features = [np.array(features)]
+        
+        # Faz a predição
+        pred = model.predict(final_features)
+        output = pred[0]  # Obtemos o rótulo diretamente
+        
+        return render_template("index.html", prediction_text=f"Nível de obesidade previsto: {output}")
+
+    except Exception as e:
+        return render_template("index.html", prediction_text=f"Erro na predição: {str(e)}")
 
 @app.route("/api", methods=["POST"])
 def results():
-    data = request.get_json(force=True)
-    pred = model.predict([np.array(list(data.values()))])
-    output = names[pred[0]]
-    return jsonify(output)
+    try:
+        data = request.get_json(force=True)
+        pred = model.predict([np.array(list(data.values()))])
+        output = pred[0]
+        return jsonify({"obesity_level": output})
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
+if __name__ == "__main__":
+    app.run(debug=True)

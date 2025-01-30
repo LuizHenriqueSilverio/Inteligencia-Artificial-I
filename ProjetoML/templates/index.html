@@ -15,69 +15,57 @@
  <div class="login">
 	<h1>Predição de Obesidade</h1>
 
-    <form action="{{ url_for('predict')}}" method="post">
-      <input type="text" name="age" placeholder="Idade" required="required" />
-      <input type="text" name="height" placeholder="Altura (em cm)" required="required" />
-      <input type="text" name="weight" placeholder="Peso (em kg)" required="required" />
+    <form action="{{ url_for('predict') }}" method="post">
+      <input type="text" name="age" placeholder="Idade" required>
+      <input type="text" name="height" placeholder="Altura (cm)" required>
+      <input type="text" name="weight" placeholder="Peso (kg)" required>
 
-      <label for="family_history">Histórico de obesidade na família?</label>
-      <select name="family_history">
-        <option value="yes">Sim</option>
-        <option value="no">Não</option>
+      <select name="family_history" required>
+        <option value="" disabled selected>Histórico de obesidade na família?</option>
+        <option value="1">Sim</option>
+        <option value="0">Não</option>
       </select>
 
-      <label for="fcvc">Frequência de consumo de vegetais</label>
-      <select name="fcvc">
+      <select name="fcvc" required>
+        <option value="" disabled selected>Frequência de consumo de vegetais</option>
         <option value="1">Baixa</option>
         <option value="2">Média</option>
         <option value="3">Alta</option>
       </select>
 
-      <label for="ncp">Número de refeições por dia</label>
-      <input type="text" name="ncp" placeholder="Ex: 3" required="required" />
+      <input type="text" name="ncp" placeholder="Número de refeições por dia" required>
 
-      <label for="caec">Consumo entre refeições</label>
-      <select name="caec">
-        <option value="0">Nunca</option>
-        <option value="1">Às vezes</option>
-        <option value="2">Frequentemente</option>
+      <select name="caec" required>
+        <option value="" disabled selected>Consome alimentos entre refeições?</option>
+        <option value="1">Nunca</option>
+        <option value="2">Às vezes</option>
+        <option value="3">Frequentemente</option>
       </select>
 
-      <label for="ch2o">Consumo de água diário</label>
-      <select name="ch2o">
-        <option value="1">Pouco</option>
-        <option value="2">Moderado</option>
-        <option value="3">Alto</option>
+      <input type="text" name="ch2o" placeholder="Litros de água por dia" required>
+
+      <select name="faf" required>
+        <option value="" disabled selected>Frequência de atividade física</option>
+        <option value="1">Nenhuma</option>
+        <option value="2">Baixa</option>
+        <option value="3">Média</option>
+        <option value="4">Alta</option>
       </select>
 
-      <label for="faf">Frequência de atividade física</label>
-      <select name="faf">
-        <option value="0">Nenhuma</option>
-        <option value="1">Baixa</option>
-        <option value="2">Média</option>
-        <option value="3">Alta</option>
+      <input type="text" name="tue" placeholder="Tempo em dispositivos eletrônicos (horas)" required>
+
+      <select name="calc" required>
+        <option value="" disabled selected>Frequência de consumo de álcool</option>
+        <option value="1">Nunca</option>
+        <option value="2">Às vezes</option>
+        <option value="3">Frequentemente</option>
       </select>
 
-      <label for="tue">Uso de dispositivos eletrônicos</label>
-      <select name="tue">
-        <option value="1">Baixo</option>
-        <option value="2">Médio</option>
-        <option value="3">Alto</option>
-      </select>
-
-      <label for="calc">Consumo de álcool</label>
-      <select name="calc">
-        <option value="0">Nunca</option>
-        <option value="1">Às vezes</option>
-        <option value="2">Frequentemente</option>
-      </select>
-
-      <button type="submit" class="btn btn-primary btn-block btn-large">Identificar obesidade</button>
+      <button type="submit">Identificar obesidade</button>
     </form>
 
-    <br><br>
+    <br>
     {{ prediction_text }}
-
  </div>
 
 
